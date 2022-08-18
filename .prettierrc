@@ -1,6 +1,5 @@
-{
-  "trailingComma": "es5",
+{  "trailingComma": "es5",
   "semi": false,
   "arrowParens": "always",
-  "endOfLine": "cr"
+  "endOfLine": "lf"
 }
