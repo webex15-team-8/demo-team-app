@@ -7,7 +7,7 @@
       src="https://via.placeholder.com/300x300"
       alt="クイズタイトル"
     />
-    //クイズ担当のれいかです！//
+    //クイズ担当のれいかです！
     <div class="container">
       <button>
         {{ "選択肢1" }}
