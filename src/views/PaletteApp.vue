@@ -1,13 +1,55 @@
 <template>
-  <h1>Vue パレット1</h1>
+  <h1>Vue パレット</h1>
   <div class="app">
-    <div class="palette" style="background-color: rgba(0, 0, 200, 0.5)"></div>
-    <p>rgba( {{ 0 }}, {{ 0 }}, 200, 0.5 )</p>
+    <div
+      class="palette"
+      v-bind:style="backgroundColor"
+      v-on:mouseover="changeColor"
+    ></div>
+    <p>rgba( {{ red }}, {{ green }}, 200, 0.5 )</p>
     <div class="colors-container">
       <div class="mini-palette"></div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      red: 0,
+      green: 0,
+      colors: [],
+    }
+  },
+  methods: {
+    changeColor(e) {
+      this.red = e.offsetX
+      this.green = e.offsetY
+    },
+    pickColor() {
+      const newColor = {
+        red: this.red,
+        green: this.green,
+      }
+      this.colors.push(newColor)
+    },
+    ShowColor(color) {
+      {
+        this.red = color.red
+        this.green = color.green
+      }
+    },
+  },
+  created: {
+    paletteStyle() {
+      return {
+        backgroundColor: `rgba(${this.red}, ${this.green}, 200, 0.5)`,
+      }
+    },
+  },
+}
+</script>
 
 <style>
 .app {
