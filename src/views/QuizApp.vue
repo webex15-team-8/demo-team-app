@@ -1,31 +1,51 @@
 <template>
   <h1>Vue クイズ</h1>
   <div class="app">
-    <h2>Q. {{ "クイズタイトル" }}</h2>
+    <h2>Q. {{ "パンダの睡眠時間は？" }}</h2>
     <img
       class="quiz-image"
       src="https://via.placeholder.com/300x300"
+      url="https://data.arachina.com/information-view/information/word_img/55f0616104c19c775b0d96f10ddc1d30.jpg"
       alt="クイズタイトル"
     />
-    //クイズ担当のれいかです！
-    //もう一回チャレンジ
-    <div class="container">
-      <button>
-        {{ "選択肢1" }}
-      </button>
-      <button>
-        {{ "選択肢2" }}
-      </button>
-      <button>
-        {{ "選択肢3" }}
+    <div class="container" id="Quiz">
+      <button
+        v-for="(choice, i) in quiz.choices"
+        v-bind:key="i"
+        v-on:click="choiced(choice)"
+      >
+        {{ choice.text }}
       </button>
     </div>
-    <div>{{ "答え" }}</div>
+    <div>{{ answer }}</div>
   </div>
 </template>
 
 <script>
 export default {}
+// eslint-disable-next-line no-undef
+const Quiz = {
+  data() {
+    return {
+      answer: "",
+      quiz: {
+        text: "パンダの睡眠時間は？",
+        choices: [
+          { text: "2時間", feedback: "2時間寝るのはキリンだよ" },
+          { text: "10時間", feedback: "正解！たくさん寝るんです。" },
+          { text: "22時間", feedback: "22時間寝るのはコアラだよ" },
+        ],
+      },
+    }
+  },
+  methods: {
+    choiced(choice) {
+      this.answer = choice.feedback
+    },
+  },
+}
+// eslint-disable-next-line no-undef
+Vue.createApp(Quiz).mount("#app")
 </script>
 
 <style>
